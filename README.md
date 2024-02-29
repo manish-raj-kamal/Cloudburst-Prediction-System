@@ -9,4 +9,5 @@ We propose to develop a Cloudburst Prediction website .This websites harness the
 It will help locals to get the real time situation of cloudburst it also help the tourist to that place they visiting are prone to cloudburst or flood like situation that they can plan there tour. It also help the mountaineer who climbs mountains
 
 
-<img width="505" alt="Flowchart" src="https://github.com/manish-raj-kamal/Cloudburst-Prediction-System/assets/143520034/09442649-30e8-4f1f-9a11-f703482c0ce3">
+![Screenshot 2024-03-01 015011](https://github.com/manish-raj-kamal/Cloudburst-Prediction-System/assets/143520034/e9defee4-7fc5-43b8-8dae-3fe7082264fd)
+
