@@ -1,0 +1,373 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudburst Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-color: #000;} 
+.container{
+    width: 100%;
+    height: 100vh;
+    background: url("Background_loop.mp4") no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-left: 7%;
+    padding-right: 7%;
+    box-sizing: border-box;
+}
+#video-background {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.textcontainer{
+    width: 100%;
+    height: 65vh;
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(https://cdn.pixabay.com/photo/2016/10/20/18/35/earth-1756274_1280.jpg);
+    background-size:100%; background-position: center;
+    padding-left: 7%; padding-right: 7%;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.textrow{
+    height: 70%;
+    padding-top: 40px; padding-bottom: 20px;
+    flex-basis: 90%;
+    max-height:80%;
+    align-items: center;
+}
+.text{
+    color:rgb(255, 255, 255); max-width: 40%; min-width: 365px; max-height: 233px; font-size: 17px;
+    word-spacing: 4px; text-align: justify; display: inline-block; 
+    /* border: 0; border-radius: 20px;  */
+}
+.text1{
+    padding-top: 15px; padding-bottom: 20px; padding-left: 10px; padding-right: 10px; background: linear-gradient(135deg, rgba(0, 255, 191, 0.1), rgba(0, 255, 191, 0.1));
+    margin-bottom: 10px; margin-right: 15%;
+}
+.text2{
+    padding-top: 13px; padding-bottom: 13px; padding-left: 10px; padding-right: 10px; background: linear-gradient(135deg, rgba(255, 0, 106, 0.1), rgba(255, 0, 106, 0.1)); 
+}
+.navbar{
+    height: 12%;
+    display: flex;
+    align-items: center;
+}
+.logo{
+    width: 60px;
+    cursor: pointer;
+}
+.menu-icon{
+    width: 30px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+nav{
+    flex: 1;
+    text-align: right;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 60px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+}
+.row{
+    display: flex;
+    height: 70%;
+    align-items: center;
+}
+.colZ{
+    flex-basis: 90%;
+    max-height:80%;
+}
+
+h1{
+    font-size: 100px;
+    color: #fff;
+}
+p{  color: #fff;
+    font-size: 15px;
+    line-height: 15px;
+}
+.colA p{
+    text-align: justify;
+    line-height: 20px;
+}
+.card{
+    width: 200px;
+    height: 230px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 10px;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+}
+.card1{
+    background-image: url(https://images.theconversation.com/files/442675/original/file-20220126-17-1i0g402.jpg);
+}
+.card2{
+    background-image: url(https://static.bangkokpost.com/media/content/dcx/2023/08/21/4867185.jpg);
+}
+.card3{
+    background-image: url(https://blogs.letemps.ch/serge-kurschat/wp-content/uploads/sites/427/2022/08/global-warming-g4133bc440_1920.jpg);
+}
+.card4{
+    background-image: url(https://img.freepik.com/premium-photo/flooding-houses-road-city-due-strong-storm-flood-consequences_124507-99068.jpg);
+}
+.card:hover{
+    transform: translateY(-10px);
+}
+h4{
+    color: #fff;
+    text-shadow: 0 0 5px #271d1d;
+}
+.card p{
+    text-shadow: 0 0 15px #000;
+    font-size: 8px;
+}
+.cardA{
+    width: 360px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    color: #fff ;
+    margin:0px auto 0 ;
+    border-radius: 20px;
+    padding: 20px 25px;
+    text-align: center;
+}
+ .search{
+     width: 80%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+ .search input{
+   border: 0;
+   outline: 0;
+   background: #ebfffc;
+   color: #555;
+   padding: 10px 20px;
+   height: 53px;
+   border-radius: 22px;
+   flex: 1;
+   margin-right: 10px;
+   font-size: 17px;
+}
+.search button{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+.search button img{ 
+    width: 50px;
+    padding: 1px 2px;
+    padding-left: 8px;
+    padding-top: 8px;
+}
+.search button:hover{
+    transform: translateX(-3px);
+}
+.weather-icon{
+    width: 150px ;
+    margin-top: 25px;
+}
+.weather h1{
+    font-size: 70px;
+    font-weight: 500;
+}
+.weather h2{
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+.details{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0 20px;
+   margin-top: 50px;
+}
+.col{
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.col img{
+    width: 40px;
+    margin-right: 10px;
+}
+.col2 img{
+    width: 60px;
+    margin-right: 10px;
+}
+.humidity, .wind{
+    font-size: 28px;
+    margin-top: -6px;
+}
+.name{
+    padding: auto 0px;
+}
+</style>
+
+</head>
+<body>
+   <div class="container">
+    <video autoplay muted loop id="video-background">
+        <source src="Background_loop.mp4" type="video/mp4">
+    </video>
+     <div class="navbar">
+        <img src="https://static.vecteezy.com/system/resources/previews/024/825/195/non_2x/3d-weather-icon-day-with-rain-free-png.png" class="logo">
+        <h2 style="font-size: 60px; color: #d6bdda; margin:0px auto 0; text-align:center; padding: 7%;">Weather</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="">REGION</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/010/794/629/small_2x/list-menu-3d-icon-png.png" class="menu-icon">
+     </div>
+   
+    <div class="row">
+        <div class="colZ colA">
+            <div class="cardA">
+                <div class="search">
+                    <input type="text" placeholder="Enter city name" spellcheck="false">
+                <button><img src="https://static.vecteezy.com/system/resources/thumbnails/028/587/943/small/magnifying-glass-3d-rendering-icon-illustration-free-png.png"></button>
+                </div>
+                <div class="weather">
+                  <img src="https://static.vecteezy.com/system/resources/thumbnails/012/629/893/small/cold-cloudy-day-3d-weather-icon-illustration-png.png" class="weather-icon">
+                  <h1 class="temp">22&deg C</h1>
+                  <h2 class="city">Jalandhar</h2>
+                  <div class="details">
+                    <div class="col">
+                        <img src="https://cdn4.iconfinder.com/data/icons/world-ozone-day-4/32/world_ozone_day_climate_change_humidity_water_air-512.png">
+                        <div>
+                            <p class="humidity">50%</p>
+                            <p>Humidity</p>
+                        </div>
+                    </div>
+                    <div class="col col2">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/022/451/258/small/windy-weather-icon-cool-breeze-with-leaves-3d-render-png.png">
+                        <div>
+                            <p class="wind">15km/h</p>
+                            <p>Wind speed</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="colZ colB">
+            <a href="https://en.wikipedia.org/wiki/Climate_of_India"><div class="card card1">
+                <h4>Indian Climate</h4>
+                <p style="font-size: 11px;">Indian climate is mostly characterized by wet and dry seasons.
+                </p>
+            </div></a>
+            <a href="https://www.ipcc.ch/sr15/"><div class="card card2">
+                <h4>Global Warming</h4>
+                <p style="font-size: 11px;">The long-term increase in Earth's average surface temperature.
+                </p>
+            </div></a>
+            <a href="https://www.who.int/health-topics/drought#tab=tab_1"><div class="card card3">
+                <h4>Drought</h4>
+                <p style="font-size: 11px;">Prolonged deficiency of precipitation, leading to water scarcity.
+                </p>
+            </div></a>
+            <a href="https://ndma.gov.in/Natural-Hazards/Floods"><div class="card card4">
+                <h4>Cloudburst</h4>
+                <p style="font-size: 11px;">A cloudburst is an extreme amount of precipitation in a short period of time.
+                </p>
+            </div></a>
+        
+        </div>
+   </div>
+   </div>
+<script>
+
+    const apikey ="a18ee2033be09c668255827261983659";
+    const apiurl ="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    
+    const searchbox = document.querySelector(".search input");
+    const searchBtn = document.querySelector(".search button");
+    const weatherIcon = document.querySelector(".weather-icon");
+    
+    async function checkweather(city){
+        const response= await fetch(apiurl + city + `&appid=${apikey}`);
+        var data = await response.json();
+    
+        console.log(data);
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "° C";
+        document.querySelector(".humidity").innerHTML = data.main.humidity +"%";
+        document.querySelector(".wind").innerHTML = Math.round(data.wind.speed) + " km/h";
+    
+        if(data.weather[0].main == "Clouds"){
+            weatherIcon.src = "https://static.vecteezy.com/system/resources/thumbnails/026/757/862/small/cloud-with-ai-generated-free-png.png";
+        }
+        else if(data.weather[0].main == "Clear"){
+            weatherIcon.src = "https://static.vecteezy.com/system/resources/thumbnails/024/273/552/small/3d-sun-icon-illustration-png.png";
+        }
+        else if(data.weather[0].main == "Rain"){
+            weatherIcon.src = "https://static.vecteezy.com/system/resources/thumbnails/010/849/993/small/3d-illustration-stormy-rain-lightning-png.png";
+        }
+        else if(data.weather[0].main == "Drizzle"){
+            weatherIcon.src = "https://static.vecteezy.com/system/resources/thumbnails/011/338/276/small/cloud-drizzling-day-png.png";
+        }
+        else if(data.weather[0].main == "Mist"){
+            weatherIcon.src = "https://static.vecteezy.com/system/resources/thumbnails/024/825/180/small/3d-weather-icon-day-free-png.png";
+        }
+        else if(data.weather[0].main == "Snow"){
+            weatherIcon.src = "https://static.vecteezy.com/system/resources/thumbnails/009/269/592/small/3d-christmas-snow-png.png";
+        }
+        else if(data.weather[0].main == "Haze"){
+            weatherIcon.src = "https://cdn3d.iconscout.com/3d/premium/thumb/haze-9175174-7502104.png";
+        }
+    }
+    searchBtn.addEventListener("click", ()=>{
+        checkweather(searchbox.value);
+        searchbox.value="";
+    });
+    // checkweather();
+    </script>
+    <div class="textcontainer">
+        <div class="textrow">
+            <div class="text text1" >A cloudburst is an extreme amount of precipitation in a short period of time,sometimes accompanied by hail and thunder, which is capable of creating flood conditions. Weather conditions can change rapidly, and they can vary greatly from one place to another.
+            </div>
+            <div class="text text2" >Weather predictions are made by combining current weather data with numerical weather prediction (NWP). NWP models use mathematical equations to simulate the atmosphere and predict the future state of the weather. Weather data is collected from a variety of sources, including ground stations, weather balloons, satellites, and radar.
+            </div>
+        </div>
+    </div>
+    <div class="name">
+    <h6 style="color: #fff; vertical-align: bottom;">&copy Manish Raj Kamal, Abhishek Gupta, Omvesh Singh</h6>
+    </div>
+</body>
+</html>
